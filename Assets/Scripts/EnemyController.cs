@@ -6,12 +6,18 @@ public class EnemyController : MonoBehaviour
 {
     // Movement Speed
     [SerializeField]
-    public float speed = 100.0f;
+    private float speed;
+
+    private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+
+        Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+
+        rb.velocity = randomDirection * speed;
     }
 
     // Update is called once per frame
@@ -26,25 +32,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collisionInfo.gameObject.name == "Wall")
         {
-            // Calculate hit Factor
-            float x = hitFactor(transform.position,
-                            collisionInfo.transform.position,
-                            collisionInfo.collider.bounds.size.x);
 
-            // Calculate direction, set length to 1
-            Vector2 dir = new Vector2(x, 1).normalized;
-
-            // Set Velocity with dir * speed
-            GetComponent<Rigidbody2D>().velocity = dir * speed;
         }
-    }
-
-    float hitFactor(Vector2 ballPos, Vector2 racketPos, float racketWidth)
-    {
-        //
-        // 1  -0.5  0  0.5   1  <- x value
-        // ===================  <- wall
-        //
-        return (ballPos.x - racketPos.x) / racketWidth;
     }
 }

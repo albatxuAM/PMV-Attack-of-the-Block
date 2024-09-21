@@ -8,8 +8,10 @@ public class Spawner : MonoBehaviour
 
     public SpawnerManager spawnManagerValues;
 
-    int instanceNumber = 1;
+    public int instanceNumber = 1;
 
+    // Lista para almacenar las posiciones generadas
+    private List<Vector3> generatedPositions = new List<Vector3>();
 
     void Start()
     {
@@ -27,7 +29,7 @@ public class Spawner : MonoBehaviour
 
             currentEntity.name = spawnManagerValues.spawnName + instanceNumber;
 
-            currentEntity.GetComponent<Renderer>().material.color = Random.ColorHSV();
+            //currentEntity.GetComponent<Renderer>().material.color = Random.ColorHSV();
 
             instanceNumber++;
         }

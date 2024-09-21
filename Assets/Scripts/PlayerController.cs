@@ -4,6 +4,7 @@ using System.Drawing;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlayerContoller : MonoBehaviour
@@ -36,7 +37,9 @@ public class PlayerContoller : MonoBehaviour
         if (collisionInfo.gameObject.CompareTag("Enemy"))
         {
             Debug.Log(collisionInfo.gameObject.tag);
-            Application.Quit();
+            UnityEngine.Cursor.visible = true;
+            //Application.Quit();
+            SceneManager.LoadScene("GameOver_Level");
         }
     }
 }
