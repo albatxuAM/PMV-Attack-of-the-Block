@@ -19,20 +19,4 @@ public class EnemyController : MonoBehaviour
 
         rb.velocity = randomDirection * speed;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // This function is called whenever the ball
-    // collides with something
-    void OnCollisionEnter2D(Collision2D collisionInfo)
-    {
-        if (collisionInfo.gameObject.name == "Wall")
-        {
-
-        }
-    }
 }

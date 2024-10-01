@@ -12,11 +12,27 @@ public class PlayerContoller : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 1.0f;
 
+    [SerializeField]
+    private int  maxLives = 3;
+
+    private int currentLives;
+    private bool invincible = false;
+    [SerializeField]
+    private float invincibleTime = 3.0f;
+
+
+    //sounds
+    public AudioClip playerSound, enemyHitSound, powerUpSound, wallSound;
+
+    public UIManager uiManager;
+
     // Start is called before the first frame update
     void Start()
     {
         //Set Cursor to not be visible
         UnityEngine.Cursor.visible = false;
+        currentLives = maxLives;
+        uiManager.updateLives(currentLives);
     }
 
     // Update is called once per frame
@@ -29,17 +45,58 @@ public class PlayerContoller : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, mousePosition, moveSpeed * Time.deltaTime);
     }
 
-    // This function is called whenever the ball
-    // collides with something
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
         Debug.Log(collisionInfo.gameObject.tag);
+
         if (collisionInfo.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log(collisionInfo.gameObject.tag);
-            UnityEngine.Cursor.visible = true;
-            //Application.Quit();
-            SceneManager.LoadScene("GameOver_Level");
+            TakeDamage(1);
         }
+
+        if (collisionInfo.gameObject.CompareTag("PowerUp"))
+        {
+            Destroy(collisionInfo.gameObject);
+            Heal(1);
+        }
+
+        if (collisionInfo.gameObject.CompareTag("Wall"))
+        {
+            //play sound
+            GetComponent<AudioSource>().clip = wallSound;
+            GetComponent<AudioSource>().Play();
+        }
+    }
+
+    void TakeDamage(int damage)
+    {
+        if(!invincible) { 
+            currentLives -= damage;
+            if(currentLives < 0) currentLives = 0;
+            uiManager.updateLives(currentLives);
+
+            //play sound
+            GetComponent<AudioSource>().clip = enemyHitSound;
+            GetComponent<AudioSource>().Play();
+
+            Invencivility();
+            Invoke(nameof(Invencivility), invincibleTime);
+        }
+    }
+
+    void Heal(int healAmount)
+    {
+        currentLives += healAmount;
+        if (currentLives < maxLives) currentLives = maxLives;
+        uiManager.updateLives(currentLives);
+
+        //play sound
+        GetComponent<AudioSource>().clip = powerUpSound;
+        GetComponent<AudioSource>().Play();
+    }
+
+    void Invencivility()
+    {
+        invincible = !invincible;
     }
 }

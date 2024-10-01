@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - Enemy
+  - Heart
+  - PowerUp
   layers:
   - Default
   - TransparentFX

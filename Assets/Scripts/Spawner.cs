@@ -10,12 +10,15 @@ public class Spawner : MonoBehaviour
 
     public int instanceNumber = 1;
 
+    public float initSpawnTime = 0.2f;
+    public float reSpawnTime = 7.0f;
+
     // Lista para almacenar las posiciones generadas
     private List<Vector3> generatedPositions = new List<Vector3>();
 
     void Start()
     {
-        SpawnEntities();
+        InvokeRepeating(nameof(SpawnEntities), initSpawnTime, reSpawnTime);
     }
 
     void SpawnEntities()
@@ -28,8 +31,6 @@ public class Spawner : MonoBehaviour
             GameObject currentEntity = Instantiate(entityToSpawn, position, Quaternion.identity);
 
             currentEntity.name = spawnManagerValues.spawnName + instanceNumber;
-
-            //currentEntity.GetComponent<Renderer>().material.color = Random.ColorHSV();
 
             instanceNumber++;
         }
