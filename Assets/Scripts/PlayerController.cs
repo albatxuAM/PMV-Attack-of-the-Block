@@ -20,11 +20,14 @@ public class PlayerContoller : MonoBehaviour
     [SerializeField]
     private float invincibleTime = 3.0f;
 
+    //parpadeo sprite
+    private float blinkInterval = 0.2f;
+    private SpriteRenderer spriteRenderer;
 
     //sounds
     public AudioClip playerSound, enemyHitSound, powerUpSound, wallSound;
 
-    public UIManager uiManager;
+    public UIManager UIManager;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +35,10 @@ public class PlayerContoller : MonoBehaviour
         //Set Cursor to not be visible
         UnityEngine.Cursor.visible = false;
         currentLives = maxLives;
-        uiManager.updateLives(currentLives);
+        UIManager.updateLives(currentLives);
+
+        // Obtén el SpriteRenderer para poder parpadear
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -73,13 +79,14 @@ public class PlayerContoller : MonoBehaviour
         if(!invincible) { 
             currentLives -= damage;
             if(currentLives < 0) currentLives = 0;
-            uiManager.updateLives(currentLives);
+            UIManager.updateLives(currentLives);
 
             //play sound
             GetComponent<AudioSource>().clip = enemyHitSound;
             GetComponent<AudioSource>().Play();
 
             Invencivility();
+            StartCoroutine(Blinking());
             Invoke(nameof(Invencivility), invincibleTime);
         }
     }
@@ -87,8 +94,8 @@ public class PlayerContoller : MonoBehaviour
     void Heal(int healAmount)
     {
         currentLives += healAmount;
-        if (currentLives < maxLives) currentLives = maxLives;
-        uiManager.updateLives(currentLives);
+        if (currentLives > maxLives) currentLives = maxLives;
+        UIManager.updateLives(currentLives);
 
         //play sound
         GetComponent<AudioSource>().clip = powerUpSound;
@@ -98,5 +105,29 @@ public class PlayerContoller : MonoBehaviour
     void Invencivility()
     {
         invincible = !invincible;
+    }
+
+    // Coroutine para parpadear mientras el jugador es invencible
+    IEnumerator Blinking()
+    {
+        float elapsedTime = 0f;
+
+        while (invincible)
+        {
+            // Alternar la visibilidad del SpriteRenderer
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            elapsedTime += blinkInterval;
+
+            // Esperar el intervalo de parpadeo
+            yield return new WaitForSeconds(blinkInterval);
+        }
+
+        // Asegurarse de que el sprite esté visible al terminar la invencibilidad
+        spriteRenderer.enabled = true;
+    }
+
+    void InvincibilityOff()
+    {
+        invincible = false;  // Desactivar invulnerabilidad
     }
 }
