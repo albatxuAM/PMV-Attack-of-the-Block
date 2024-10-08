@@ -9,6 +9,9 @@ public class LoadScene : MonoBehaviour
     private string newScene;
     public void LoadLevel()
     {
+        //Set Cursor to not be visible
+        UnityEngine.Cursor.visible = true;
+
         SceneManager.LoadScene(newScene);
     }
 

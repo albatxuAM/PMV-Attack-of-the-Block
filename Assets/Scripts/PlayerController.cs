@@ -27,15 +27,15 @@ public class PlayerContoller : MonoBehaviour
     //sounds
     public AudioClip playerSound, enemyHitSound, powerUpSound, wallSound;
 
-    public UIManager UIManager;
+    public UIManager uiManager;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         //Set Cursor to not be visible
         UnityEngine.Cursor.visible = false;
         currentLives = maxLives;
-        UIManager.updateLives(currentLives);
+        uiManager.updateLives(currentLives);
 
         // Obtén el SpriteRenderer para poder parpadear
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -79,7 +79,7 @@ public class PlayerContoller : MonoBehaviour
         if(!invincible) { 
             currentLives -= damage;
             if(currentLives < 0) currentLives = 0;
-            UIManager.updateLives(currentLives);
+            uiManager.updateLives(currentLives);
 
             //play sound
             GetComponent<AudioSource>().clip = enemyHitSound;
@@ -95,7 +95,7 @@ public class PlayerContoller : MonoBehaviour
     {
         currentLives += healAmount;
         if (currentLives > maxLives) currentLives = maxLives;
-        UIManager.updateLives(currentLives);
+        uiManager.updateLives(currentLives);
 
         //play sound
         GetComponent<AudioSource>().clip = powerUpSound;
