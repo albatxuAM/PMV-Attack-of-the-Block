@@ -29,7 +29,6 @@ public class PlayerContoller : MonoBehaviour
 
     public UIManager uiManager;
 
-
     void Start()
     {
         //Set Cursor to not be visible
@@ -128,6 +127,7 @@ public class PlayerContoller : MonoBehaviour
 
     void InvincibilityOff()
     {
-        invincible = false;  // Desactivar invulnerabilidad
+        // Desactivar invulnerabilidad
+        invincible = false;  
     }
 }
