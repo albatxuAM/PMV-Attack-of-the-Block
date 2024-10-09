@@ -29,12 +29,12 @@ public partial class @PauseControls: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Pause"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""81db647b-eb10-4323-8895-97936e7830d7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
