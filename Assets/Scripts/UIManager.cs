@@ -46,7 +46,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // Función para guardar el tiempo del jugador
     private void SaveScore(float playerTime)
     {
         List<float> bestTimes = new List<float>();
@@ -54,20 +53,30 @@ public class UIManager : MonoBehaviour
         // Cargar los 5 mejores tiempos actuales de PlayerPrefs
         for (int i = 0; i < 5; i++)
         {
-            bestTimes.Add(PlayerPrefs.GetFloat("BestTime" + i, Mathf.Infinity));
+            bestTimes.Add(PlayerPrefs.GetFloat("BestTime" + i, 0)); // Cambia Mathf.Infinity a 0 para que los mejores tiempos sean mayores
         }
 
         // Añadir el tiempo del jugador actual
         bestTimes.Add(playerTime);
 
-        // Ordenar la lista y quedarnos con los 5 mejores tiempos
-        bestTimes.Sort();
+        // Ordenar la lista en orden descendente (de mayor a menor)
+        bestTimes.Sort((a, b) => b.CompareTo(a));
         bestTimes = bestTimes.GetRange(0, Mathf.Min(5, bestTimes.Count));
 
         // Guardar los 5 mejores tiempos actualizados
         for (int i = 0; i < bestTimes.Count; i++)
         {
             PlayerPrefs.SetFloat("BestTime" + i, bestTimes[i]);
+        }
+
+        // Guardar la última puntuación si está en el ranking
+        if (bestTimes.Contains(playerTime))
+        {
+            PlayerPrefs.SetFloat("LastScore", playerTime);
+        }
+        else
+        {
+            PlayerPrefs.DeleteKey("LastScore"); // Eliminar la última puntuación si no está en el ranking
         }
     }
 }
