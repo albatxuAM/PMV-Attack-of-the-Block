@@ -67,7 +67,8 @@ public class RankingManager : MonoBehaviour
         }
         else
         {
-            lastScoreText.text = "No hay puntuación anterior.";
+            //lastScoreText.text = "No hay puntuación anterior.";
+            lastScoreText.text = "";
         }
     }
 }

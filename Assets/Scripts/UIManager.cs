@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
         // Cargar los 5 mejores tiempos actuales de PlayerPrefs
         for (int i = 0; i < 5; i++)
         {
-            bestTimes.Add(PlayerPrefs.GetFloat("BestTime" + i, 0)); // Cambia Mathf.Infinity a 0 para que los mejores tiempos sean mayores
+            bestTimes.Add(PlayerPrefs.GetFloat("BestTime" + i, 0)); 
         }
 
         // Añadir el tiempo del jugador actual

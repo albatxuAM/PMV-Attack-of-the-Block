@@ -73,6 +73,6 @@ public class PauseMenuController : MonoBehaviour
         Time.timeScale = 1f;
         //Hacer cursor visible
         UnityEngine.Cursor.visible = true;
-        SceneManager.LoadScene("MainMenu_Level");
+        SceneManager.LoadScene("Menu_Level");
     }
 }

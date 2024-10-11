@@ -13,7 +13,7 @@ public class PlayerContoller : MonoBehaviour
     private float moveSpeed = 1.0f;
 
     [SerializeField]
-    private int  maxLives = 3;
+    private int maxLives = 3;
 
     private int currentLives;
     private bool invincible = false;
@@ -29,12 +29,13 @@ public class PlayerContoller : MonoBehaviour
 
     public UIManager uiManager;
 
-    public GameObject shieldVisual; 
+    public GameObject shieldVisual;
     private bool hasShield = false;
     public float shieldDuration = 5f;
 
+    public float freezeDuration = 5f;
 
-    public float freezeDuration = 5f; 
+    private Rigidbody2D rb;
 
     private Animator animator;
 
@@ -48,20 +49,43 @@ public class PlayerContoller : MonoBehaviour
         // Obtén el SpriteRenderer para poder parpadear
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        rb = GetComponent<Rigidbody2D>();
+
         // Obtiene la referencia al componente Animator del Player
         animator = GetComponent<Animator>();
 
         animator.SetBool("Flying", true);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // convert mouse’s screen coordinates to a real-world position
+        //// convert mouse’s screen coordinates to a real-world position
+        //Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        ////Move player smoothly to mousePos
+        //transform.position = Vector2.MoveTowards(transform.position, mousePosition, moveSpeed * Time.deltaTime);
+
+        // Convertir las coordenadas de la pantalla del mouse a una posición en el mundo
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        //Move player smoothly to mousePos
-        transform.position = Vector2.MoveTowards(transform.position, mousePosition, moveSpeed * Time.deltaTime);
+        // Calcular la dirección hacia el mouse
+        Vector2 direction = (mousePosition - rb.position).normalized;
+
+        // Calcular la distancia al mouse
+        float distance = Vector2.Distance(rb.position, mousePosition);
+
+        // Mover solo si está más lejos que la distancia de parada
+        if (distance > stopDistance)
+        {
+            rb.velocity = direction * moveSpeed;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero; // Detenerse
+        }
+
+        // Mantener la rotación en 0
+        rb.rotation = 0f;
     }
 
     void OnCollisionEnter2D(Collision2D collisionInfo)
@@ -70,17 +94,19 @@ public class PlayerContoller : MonoBehaviour
 
         if (collisionInfo.gameObject.CompareTag("Enemy"))
         {
-            if (hasShield)
+            if (!invincible)
             {
-                // Si el escudo está activo, se desactiva al recibir un golpe
-                DeactivateShield(); 
+                if (hasShield)
+                {
+                    // Si el escudo está activo, se desactiva al recibir un golpe
+                    DeactivateShield();
+                }
+                else
+                {
+                    // Código para reducir vida al jugador
+                    TakeDamage(1);
+                }
             }
-            else
-            {
-                // Código para reducir vida al jugador
-                TakeDamage(1);
-            }
-            
         }
 
         if (collisionInfo.gameObject.CompareTag("HearthPowerUp"))
@@ -92,7 +118,7 @@ public class PlayerContoller : MonoBehaviour
         if (collisionInfo.gameObject.CompareTag("ShieldPowerUp"))
         {
             ActivateShield();
-            Destroy(collisionInfo.gameObject); 
+            Destroy(collisionInfo.gameObject);
         }
 
         if (collisionInfo.gameObject.CompareTag("Wall"))
@@ -111,9 +137,10 @@ public class PlayerContoller : MonoBehaviour
 
     void TakeDamage(int damage)
     {
-        if(!invincible) { 
+        if (!invincible)
+        {
             currentLives -= damage;
-            if(currentLives < 0) currentLives = 0;
+            if (currentLives < 0) currentLives = 0;
             uiManager.updateLives(currentLives);
 
             //play sound
@@ -164,7 +191,7 @@ public class PlayerContoller : MonoBehaviour
     void InvincibilityOff()
     {
         // Desactivar invulnerabilidad
-        invincible = false;  
+        invincible = false;
     }
 
     void ActivateShield()
@@ -172,7 +199,7 @@ public class PlayerContoller : MonoBehaviour
         hasShield = true;
         shieldVisual.SetActive(true);
         // Desactiva el escudo después de X segundos
-        Invoke(nameof(DeactivateShield), shieldDuration); 
+        Invoke(nameof(DeactivateShield), shieldDuration);
     }
 
     void DeactivateShield()
