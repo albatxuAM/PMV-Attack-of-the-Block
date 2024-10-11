@@ -49,6 +49,8 @@ public class PauseMenuController : MonoBehaviour
 
     public void PauseGame()
     {
+        //Hacer cursor visible
+        UnityEngine.Cursor.visible = true;
         isPaused = true;
         // Pausa el tiempo
         Time.timeScale = 0f; 
@@ -57,6 +59,8 @@ public class PauseMenuController : MonoBehaviour
 
     public void ResumeGame()
     {
+        //Hacer cursor visible
+        UnityEngine.Cursor.visible = false;
         isPaused = false;
         // Reanuda el tiempo
         Time.timeScale = 1f;
@@ -68,7 +72,7 @@ public class PauseMenuController : MonoBehaviour
         // Asegúrate de reanudar el tiempo
         Time.timeScale = 1f;
         //Hacer cursor visible
-        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.visible = true;
         SceneManager.LoadScene("MainMenu_Level");
     }
 }

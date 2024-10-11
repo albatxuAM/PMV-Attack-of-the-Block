@@ -760,7 +760,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 452680160}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1356675983}
+        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
+        m_MethodName: LoadMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &452680160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,10 +843,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2020004745}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -235, y: 11}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 294, y: 11}
+  m_SizeDelta: {x: 783, y: 334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &581357258
 MonoBehaviour:
@@ -1124,6 +1136,82 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1060792105
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5175919319492955702}
+    m_Modifications:
+    - target: {fileID: 4825962646254406312, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_Name
+      value: VisualShield
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825962646254406312, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049972530536925830, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049972530536925830, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049972530536925830, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049972530536925830, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049972530536925830, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049972530536925830, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049972530536925830, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049972530536925830, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049972530536925830, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049972530536925830, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049972530536925830, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049972530536925830, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9221531545112066176, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+    - {fileID: 2275392891693051852, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+--- !u!4 &1060792106 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6049972530536925830, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+  m_PrefabInstance: {fileID: 1060792105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1098211389 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5261973327932320200, guid: 96286ed816a669d48a61e4a3dc21f030, type: 3}
@@ -1568,6 +1656,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96286ed816a669d48a61e4a3dc21f030, type: 3}
+--- !u!1 &1613624651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4825962646254406312, guid: 4aab37894557f9f49a2b52998c65989c, type: 3}
+  m_PrefabInstance: {fileID: 1060792105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1680085517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,7 +1778,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1836516692}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1356675983}
+        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
+        m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1836516692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1860,11 +1965,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f9681518b4a7004a89303f0843fed5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityToSpawn: {fileID: 2557631604577123462, guid: 58f2bc042b1c20b43b2859693657947e, type: 3}
+  entitiesToSpawn:
+  - {fileID: 2557631604577123462, guid: 58f2bc042b1c20b43b2859693657947e, type: 3}
   spawnManagerValues: {fileID: 11400000, guid: 498038cfa077d444994c586f9a9ce3c2, type: 2}
-  instanceNumber: 1
+  instanceNumber: 3
   initSpawnTime: 0.2
   reSpawnTime: 7
+  minDistanceBetweenSpawns: 1
 --- !u!4 &1880013844
 Transform:
   m_ObjectHideFlags: 0
@@ -1988,11 +2095,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f9681518b4a7004a89303f0843fed5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityToSpawn: {fileID: 4825962646254406312, guid: 4c98abe0dab1698459eeb975feb9feae, type: 3}
+  entitiesToSpawn:
+  - {fileID: 4825962646254406312, guid: 24a8991201228094a830668d6ba5fef8, type: 3}
+  - {fileID: 4825962646254406312, guid: cd419c3ecc1d41d40b34638359859e48, type: 3}
+  - {fileID: 4825962646254406312, guid: 4c98abe0dab1698459eeb975feb9feae, type: 3}
   spawnManagerValues: {fileID: 11400000, guid: 28d0438580f4acf41932c8013f8ca8ac, type: 2}
   instanceNumber: 1
   initSpawnTime: 8
   reSpawnTime: 10
+  minDistanceBetweenSpawns: 1
 --- !u!224 &1913304282 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5547368319656669467, guid: 96286ed816a669d48a61e4a3dc21f030, type: 3}
@@ -2685,11 +2796,23 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 2095046202}
+    - target: {fileID: 8737372022395613511, guid: a8f634abcd288a14fbe049899167dcdc, type: 3}
+      propertyPath: shieldVisual
+      value: 
+      objectReference: {fileID: 1613624651}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3756946873318076369, guid: a8f634abcd288a14fbe049899167dcdc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1060792106}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8f634abcd288a14fbe049899167dcdc, type: 3}
+--- !u!4 &5175919319492955702 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3756946873318076369, guid: a8f634abcd288a14fbe049899167dcdc, type: 3}
+  m_PrefabInstance: {fileID: 5175919319492955701}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

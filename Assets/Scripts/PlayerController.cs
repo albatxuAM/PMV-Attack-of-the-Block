@@ -29,6 +29,15 @@ public class PlayerContoller : MonoBehaviour
 
     public UIManager uiManager;
 
+    public GameObject shieldVisual; 
+    private bool hasShield = false;
+    public float shieldDuration = 5f;
+
+
+    public float freezeDuration = 5f; 
+
+    private Animator animator;
+
     void Start()
     {
         //Set Cursor to not be visible
@@ -38,6 +47,11 @@ public class PlayerContoller : MonoBehaviour
 
         // Obtén el SpriteRenderer para poder parpadear
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Obtiene la referencia al componente Animator del Player
+        animator = GetComponent<Animator>();
+
+        animator.SetBool("Flying", true);
     }
 
     // Update is called once per frame
@@ -56,13 +70,29 @@ public class PlayerContoller : MonoBehaviour
 
         if (collisionInfo.gameObject.CompareTag("Enemy"))
         {
-            TakeDamage(1);
+            if (hasShield)
+            {
+                // Si el escudo está activo, se desactiva al recibir un golpe
+                DeactivateShield(); 
+            }
+            else
+            {
+                // Código para reducir vida al jugador
+                TakeDamage(1);
+            }
+            
         }
 
-        if (collisionInfo.gameObject.CompareTag("PowerUp"))
+        if (collisionInfo.gameObject.CompareTag("HearthPowerUp"))
         {
             Destroy(collisionInfo.gameObject);
             Heal(1);
+        }
+
+        if (collisionInfo.gameObject.CompareTag("ShieldPowerUp"))
+        {
+            ActivateShield();
+            Destroy(collisionInfo.gameObject); 
         }
 
         if (collisionInfo.gameObject.CompareTag("Wall"))
@@ -70,6 +100,12 @@ public class PlayerContoller : MonoBehaviour
             //play sound
             GetComponent<AudioSource>().clip = wallSound;
             GetComponent<AudioSource>().Play();
+        }
+
+        if (collisionInfo.gameObject.CompareTag("FreezePowerUp"))
+        {
+            FreezeEnemies();
+            Destroy(collisionInfo.gameObject);
         }
     }
 
@@ -129,5 +165,27 @@ public class PlayerContoller : MonoBehaviour
     {
         // Desactivar invulnerabilidad
         invincible = false;  
+    }
+
+    void ActivateShield()
+    {
+        hasShield = true;
+        shieldVisual.SetActive(true);
+        // Desactiva el escudo después de X segundos
+        Invoke(nameof(DeactivateShield), shieldDuration); 
+    }
+
+    void DeactivateShield()
+    {
+        hasShield = false;
+        shieldVisual.SetActive(false);
+    }
+    void FreezeEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<EnemyController>().Freeze(freezeDuration);
+        }
     }
 }

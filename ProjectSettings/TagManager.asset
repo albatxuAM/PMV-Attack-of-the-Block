@@ -7,7 +7,10 @@ TagManager:
   - Wall
   - Enemy
   - Heart
-  - PowerUp
+  - HearthPowerUp
+  - ShieldPowerUp
+  - FreezePowerUp
+  - Undefined
   layers:
   - Default
   - TransparentFX

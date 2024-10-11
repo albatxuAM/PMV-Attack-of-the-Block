@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 9221531545112066176}
   - component: {fileID: 2275392891693051852}
   m_Layer: 7
-  m_Name: HeartPowerUpPrefab
-  m_TagString: PowerUp
+  m_Name: ShieldPowerUpPrefab
+  m_TagString: ShieldPowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7e270e9722e2a00469969e899e073963, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c3133b9e39edbd04fad2aad50f7cb8cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
