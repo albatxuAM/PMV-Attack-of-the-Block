@@ -39,6 +39,8 @@ public class PlayerContoller : MonoBehaviour
 
     private Animator animator;
 
+    public float stopDistance = 0.5f;
+
     void Start()
     {
         //Set Cursor to not be visible
@@ -59,12 +61,6 @@ public class PlayerContoller : MonoBehaviour
 
     void Update()
     {
-        //// convert mouse’s screen coordinates to a real-world position
-        //Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        ////Move player smoothly to mousePos
-        //transform.position = Vector2.MoveTowards(transform.position, mousePosition, moveSpeed * Time.deltaTime);
-
         // Convertir las coordenadas de la pantalla del mouse a una posición en el mundo
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
