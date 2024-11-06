@@ -1,11 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using Unity.Collections.LowLevel.Unsafe;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class PlayerContoller : MonoBehaviour
 {
@@ -53,13 +47,13 @@ public class PlayerContoller : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
-        // Obtiene la referencia al componente Animator del Player
-        animator = GetComponent<Animator>();
+        //// Obtiene la referencia al componente Animator del Player
+        //animator = GetComponent<Animator>();
 
-        animator.SetBool("Flying", true);
+        //animator.SetBool("Flying", true);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // Convertir las coordenadas de la pantalla del mouse a una posición en el mundo
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -100,15 +94,16 @@ public class PlayerContoller : MonoBehaviour
                 else
                 {
                     // Código para reducir vida al jugador
-                    TakeDamage(1);
+                    //TakeDamage(1);
                 }
+                // Destroy(collisionInfo.gameObject);
             }
         }
 
         if (collisionInfo.gameObject.CompareTag("HearthPowerUp"))
         {
             Destroy(collisionInfo.gameObject);
-            Heal(1);
+            //Heal(1);
         }
 
         if (collisionInfo.gameObject.CompareTag("ShieldPowerUp"))
