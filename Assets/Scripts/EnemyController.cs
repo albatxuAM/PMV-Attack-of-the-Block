@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -15,12 +16,19 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
 
-        //Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+        Vector2 randomDirection = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
 
-        //rb.velocity = randomDirection * speed;
+        rb.velocity = randomDirection * speed;
     }
+    void FixedUpdate()
+    {
+        rb.velocity = rb.velocity + new Vector2(speed * Time.fixedDeltaTime, speed * Time.fixedDeltaTime);
+
+        Console.WriteLine(rb.velocity);
+    }
+
 
     // Método para congelar el enemigo
     public void Freeze(float duration)

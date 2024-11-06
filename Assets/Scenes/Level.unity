@@ -2056,7 +2056,7 @@ MonoBehaviour:
   - {fileID: 2557631604577123462, guid: 58f2bc042b1c20b43b2859693657947e, type: 3}
   spawnManagerValues: {fileID: 11400000, guid: 498038cfa077d444994c586f9a9ce3c2, type: 2}
   initSpawnTime: 0.2
-  reSpawnTime: 7
+  reSpawnTime: 0
   minDistanceBetweenSpawns: 1
 --- !u!4 &1880013844
 Transform:
@@ -2176,7 +2176,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880013842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f9681518b4a7004a89303f0843fed5c, type: 3}
   m_Name: 
