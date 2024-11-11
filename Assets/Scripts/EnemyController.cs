@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,22 +12,38 @@ public class EnemyController : MonoBehaviour
     private bool isFrozen = false;
     private Vector2 originalVelocity;
 
+    private Vector2 randomDirection;
+    private float aceleration;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
-        Vector2 randomDirection = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
+        float angle = Random.Range(0f, 360f);
+        randomDirection = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
+
+        //randomDirection = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
 
         rb.velocity = randomDirection * speed;
+
+        aceleration = speed;
     }
+
     void FixedUpdate()
     {
-        rb.velocity = rb.velocity + new Vector2(speed * Time.fixedDeltaTime, speed * Time.fixedDeltaTime);
-
-        Console.WriteLine(rb.velocity);
+        aceleration += speed * Time.fixedDeltaTime;
+        rb.velocity = randomDirection * aceleration;
+        // rb.velocity += rb.velocity * Time.fixedDeltaTime;
+        Debug.Log(aceleration);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Al chocar, calcula la nueva dirección reflejada
+        Vector2 normal = collision.contacts[0].normal;
+        randomDirection = Vector2.Reflect(randomDirection, normal).normalized;
+        rb.velocity = randomDirection * aceleration;
+    }
 
     // Método para congelar el enemigo
     public void Freeze(float duration)

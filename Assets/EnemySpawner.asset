@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EnemySpawner
   m_EditorClassIdentifier: 
   spawnName: Enemy
-  numberOfPrefabs: 2
+  numberOfPrefabs: 1
